@@ -41,7 +41,7 @@ jobs:
       - name: Create database
         run: |
           sudo mysql -e 'CREATE DATABASE testing;'
-          php artisan migrate --env=testing --database=testing
+          php artisan migrate --env=testing 
 
       - name: Run tests
-        run: php artisan test --env=testing --database=testing
+        run: php artisan test --env=testing
