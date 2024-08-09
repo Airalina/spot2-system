@@ -18,7 +18,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: spot2
-          MYSQL_PASSWORD: 
+          MYSQL_USER: user
+          MYSQL_PASSWORD: root
         ports:
           - 3306:3306
         options: >-
@@ -45,9 +46,9 @@ jobs:
       - name: Update .env for CI
         run: |
           sed -i 's/DB_HOST=127.0.0.1/DB_HOST=127.0.0.1/' .env
-          sed -i 's/DB_DATABASE=laravel/DB_DATABASE=spot2/' .env
-          sed -i 's/DB_USERNAME=root/DB_USERNAME=root/' .env
-          sed -i 's/DB_PASSWORD=/DB_PASSWORD=/' .env
+          sed -i 's/DB_DATABASE=spot2/DB_DATABASE=spot2/' .env
+          sed -i 's/DB_USERNAME=user/DB_USERNAME=user/' .env
+          sed -i 's/DB_PASSWORD=root/DB_PASSWORD=root/' .env
 
       - name: Generate application key
         run: php artisan key:generate
