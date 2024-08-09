@@ -14,12 +14,12 @@ jobs:
 
     services:
       mysql:
-        image: mysql:5.7  
+        image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: spot2
-          MYSQL_USER: user
-          MYSQL_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: root        
+          MYSQL_DATABASE: spot2           
+          MYSQL_USER: ci_user             
+          MYSQL_PASSWORD: ci_password
         ports:
           - 3306:3306
         options: >-
@@ -45,10 +45,19 @@ jobs:
 
       - name: Update .env for CI
         run: |
+          sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=mysql/' .env
           sed -i 's/DB_HOST=127.0.0.1/DB_HOST=127.0.0.1/' .env
+          sed -i 's/DB_PORT=3306/DB_PORT=3306/' .env
           sed -i 's/DB_DATABASE=spot2/DB_DATABASE=spot2/' .env
-          sed -i 's/DB_USERNAME=user/DB_USERNAME=user/' .env
-          sed -i 's/DB_PASSWORD=root/DB_PASSWORD=root/' .env
+          sed -i 's/DB_USERNAME=root/DB_USERNAME=ci_user/' .env
+          sed -i 's/DB_PASSWORD=/DB_PASSWORD=ci_password/' .env
+
+      - name: Wait for MySQL to be ready
+        run: sleep 10
+
+      - name: Verify MySQL Connection
+        run: |
+          mysql -h 127.0.0.1 -u ci_user -pci_password -e "SHOW DATABASES;"
 
       - name: Generate application key
         run: php artisan key:generate
@@ -57,4 +66,4 @@ jobs:
         run: php artisan migrate --force
 
       - name: Run tests
-        run: php artisan test -p
+        run: php artisan test
