@@ -46,9 +46,9 @@ jobs:
       - name: Update .env for CI
         run: |
           sed -i 's/DB_HOST=127.0.0.1/DB_HOST=127.0.0.1/' .env
-          sed -i 's/DB_DATABASE=laravel/DB_DATABASE=testing/' .env
-          sed -i 's/DB_USERNAME=root/DB_USERNAME=user/' .env
-          sed -i 's/DB_PASSWORD=/DB_PASSWORD=password/' .env
+          sed -i 's/DB_DATABASE=laravel/DB_DATABASE=spot2/' .env
+          sed -i 's/DB_USERNAME=root/DB_USERNAME=root/' .env
+          sed -i 's/DB_PASSWORD=/DB_PASSWORD=/' .env
 
       - name: Generate application key
         run: php artisan key:generate
