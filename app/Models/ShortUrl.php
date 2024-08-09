@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 #[ObservedBy([ShortUrlObserver::class])]
 class ShortUrl extends Model
 {
+    use HasFactory;
         /**
      * The attributes that are mass assignable.
      *

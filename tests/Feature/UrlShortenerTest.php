@@ -14,7 +14,7 @@ class UrlShortenerTest extends TestCase
     public function test_can_create_short_url()
     {
         $response = $this->postJson('/api/short-urls', [
-            'original_url' => 'https://www.example.com'
+            'original_url' => 'https://www.original.com'
         ]);
 
         $response->assertStatus(201)
@@ -26,7 +26,7 @@ class UrlShortenerTest extends TestCase
                  ]);
 
         $this->assertDatabaseHas('short_urls', [
-            'original_url' => 'https://www.example.com'
+            'original_url' => 'https://www.original.com'
         ]);
     }
 

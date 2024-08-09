@@ -14,12 +14,12 @@ jobs:
 
     services:
       mysql:
-        image: mysql:5.7  # Puedes especificar la versión de MySQL que necesitas
+        image: mysql:5.7  
         env:
           MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: testing
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: spot2
+          MYSQL_USER: root
+          MYSQL_PASSWORD: 
         ports:
           - 3306:3306
         options: >-
