@@ -201,7 +201,5 @@ class ShortUrlController extends Controller
 
         return new ShortUrlResource($shortUrl);
     }
-    //  $url = Cache::remember("short_url_{$code}", 60, function () use ($code) {
-    //     return ShortUrl::where('code', $code)->firstOrFail();
-    // });
+
 }
