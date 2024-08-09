@@ -10,7 +10,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -33,14 +32,13 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-            git pull origin main
-            php artisan migrate --force
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
-            sudo systemctl restart httpd
-          EOF
-          
+          git pull origin main
+          php artisan migrate --force
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+          sudo systemctl restart httpd
+
       - name: Create database
         run: |
           sudo mysql -e 'CREATE DATABASE testing;'
@@ -48,4 +46,3 @@ jobs:
 
       - name: Run tests
         run: php artisan test --env=testing --database=testing
-
