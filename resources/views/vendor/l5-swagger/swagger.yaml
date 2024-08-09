@@ -1,0 +1,26 @@
+components:
+  schemas:
+    ShortUrl:
+      type: object
+      required:
+        - id
+        - original_url
+        - code
+      properties:
+        id:
+          type: integer
+          example: 1
+        original_url:
+          type: string
+          example: "https://example.com"
+        code:
+          type: string
+          example: "abc123"
+    StoreShortUrlRequest:
+      type: object
+      required:
+        - original_url
+      properties:
+        original_url:
+          type: string
+          example: "https://example.com"
